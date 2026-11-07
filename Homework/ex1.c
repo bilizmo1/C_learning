@@ -41,9 +41,27 @@ Liczba znalezionych liczb: 5
 
 */
 
-void zadanie1(void) {
+int zadanie1(void) {
 
-    // Tutaj napisz kod
+    printf("Podaj n: ");
+    int n;
+    if(scanf("%d", &n) != 1){
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if(n <= 0){
+        printf("Podana liczba musi byc dodatnia");
+        return 2;
+    }
+    int liczba_znalezionych = 0;
+    for(int i = 1; i <= n ; i++){
+        if(i % 3 == 0){
+            printf("%d ", i);
+            liczba_znalezionych++;
+        }
+    }
+    printf("\n");
+    printf("Liczba znalezionych liczb: %d", liczba_znalezionych);
 
 }
 
@@ -74,9 +92,33 @@ Wymagania:
 - Instrukcja if.
 */
 
-void zadanie2(void) {
+int zadanie2(void) {
 
-    // Tutaj napisz kod
+    printf("Podaj a: ");
+    int a;
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    printf("Podaj b: ");
+    int b;
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (a > b) {
+        printf("Pierwsza liczba: %d musi byc mniejsza od drugiej liczby: %d", a, b);
+        return 2;
+    }
+    int suma = 0;
+    for (int i = a; i <= b; i++) {
+        if (i % 2 == 0) {
+            printf("%d ", i);
+            suma = suma + i;
+        }
+    }
+    printf("\n");
+    printf("Suma: %d", suma);
 
 }
 
@@ -105,9 +147,24 @@ Liczba cyfr: 1
 
 */
 
-void zadanie3(void) {
+int zadanie3(void) {
 
-    // Tutaj napisz kod
+    printf("Podaj liczbe: ");
+    int liczba;
+    if (scanf("%d", &liczba) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (liczba < 0) {
+        printf("Podana liczba musi byc nieujemna");
+        return 2;
+    }
+    int liczba_cyfr = 0;
+    while (liczba > 0) {
+        liczba = liczba / 10;
+        liczba_cyfr++;
+    }
+    printf("Liczba cyfr: %d", liczba_cyfr);
 
 }
 
@@ -135,9 +192,31 @@ Cyfry można wypisywać w kolejności od prawej do lewej.
 
 */
 
-void zadanie4(void) {
+int zadanie4(void) {
 
-    // Tutaj napisz kod
+    printf("Podaj liczbe: ");
+    int liczba;
+    if (scanf("%d", &liczba) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (liczba <= 0) {
+        printf("Podana liczba jest nieujemna");
+        return 2;
+    }
+    printf("Cyfry parzyste: ");
+    int suma_cyfr = 0;
+    int ostatnia_cyfra;
+    while (liczba > 0) {
+        ostatnia_cyfra = liczba % 10;
+        if (ostatnia_cyfra % 2 == 0) {
+            printf("%d ", ostatnia_cyfra);
+            suma_cyfr = suma_cyfr + ostatnia_cyfra;
+        }
+        liczba = liczba / 10;
+    }
+    printf("\n");
+    printf("Suma cyfr parzystych: %d", suma_cyfr);
 
 }
 
@@ -169,9 +248,39 @@ Cyfra 0 wystepuje 3 razy.
 
 */
 
-void zadanie5(void) {
+int zadanie5(void) {
 
-    // Tutaj napisz kod
+    int zadanie5(void) {
+    printf("Podaj liczbe: ");
+    int liczba;
+    if (scanf("%d", &liczba) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (liczba <= 0) {
+        printf("Podana liczba musi byc nieujemna");
+        return 2;
+    }
+    printf("Podaj cyfre: ");
+    int cyfra;
+    if (scanf("%d", &cyfra) !=1 ) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (cyfra < 0 && cyfra > 9) {
+        printf("Cyfra musi byc z przedzialu od 0 do 9");
+        return 2;
+    }
+    int ile_razy_wystepuje = 0;
+    int ostatnia_liczba;
+    while (liczba > 0) {
+        ostatnia_liczba = liczba % 10;
+        if (ostatnia_liczba == cyfra) {
+            ile_razy_wystepuje++;
+        }
+        liczba = liczba / 10;
+    }
+    printf("Cyfra %d wystepuje %d razy", cyfra, ile_razy_wystepuje);
 
 }
 
@@ -203,10 +312,26 @@ Nową liczbę można budować, mnożąc aktualny
 wynik przez 10 i dodając kolejną cyfrę.
 */
 
-void zadanie6(void) {
+int zadanie6(void) {
 
-    // Tutaj napisz kod
-
+    printf("Podaj liczbe: ");
+    int liczba;
+    if (scanf("%d", &liczba) != 1) {
+        printf("Podano niepoprawne dane");
+        return 1;
+    }
+    if (liczba <= 0) {
+        printf("Podana liczba musi byc dodatnia");
+        return 2;
+    }
+    int wynik = 0;
+    int ostatnia_liczba;
+    while (liczba > 0) {
+        ostatnia_liczba = liczba % 10;
+        wynik = (wynik * 10) + ostatnia_liczba;
+        liczba = liczba / 10;
+    }
+    printf("Odwrocona liczba: %d", wynik);
 }
 
 
