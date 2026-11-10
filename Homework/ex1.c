@@ -161,7 +161,7 @@ int zadanie3(void) {
     }
     int liczba_cyfr = 0;
     while (liczba > 0) {
-        liczba = liczba / 10;
+        liczba = liczba / 10; // 
         liczba_cyfr++;
     }
     printf("Liczba cyfr: %d", liczba_cyfr);
@@ -272,10 +272,8 @@ int zadanie5(void) {
         return 2;
     }
     int ile_razy_wystepuje = 0;
-    int ostatnia_liczba;
-    while (liczba > 0) {
-        ostatnia_liczba = liczba % 10;
-        if (ostatnia_liczba == cyfra) {
+    while (liczba > 0) { 
+        if (liczba % 10 == cyfra) {
             ile_razy_wystepuje++;
         }
         liczba = liczba / 10;
@@ -334,7 +332,12 @@ int zadanie6(void) {
     printf("Odwrocona liczba: %d", wynik);
 }
 
+// 123 -> 321 
+// 3 * 100 + 2 * 10 + 1 * 1 = 321 
 
+// 4321  -> 1234 
+
+// 1 * 1000 + 2 * 100 + 3 * 10 + 4 * 1 = 1234
 /*
 =========================================================
                     FUNKCJA MAIN
