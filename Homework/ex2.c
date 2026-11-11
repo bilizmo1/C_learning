@@ -283,6 +283,17 @@ int zadanie8(void) {
         printf("Podano niepoprawne dane");
         return 1;
     }
+    int max = a; 
+    if (b > max){
+        max = b;
+    }
+    if(c > max){
+        max = c;
+    }
+    printf("Najwieksza: %d", max);
+
+
+
     /*if (a > b && a > c) {
         printf("Najwieksza: %d", a);
     }
@@ -403,19 +414,22 @@ int zadanie11(void) {
         return 1;
     }
     switch (znak) {
-        case '+':
+        case '+':{
             float suma = pierwsza_liczba + druga_liczba;
             printf("Wynik: %.2f", suma);
             break;
-        case '-':
+        }
+        case '-':{
             float roznica = pierwsza_liczba - druga_liczba;
             printf("Wynik: %.2f", roznica);
             break;
-        case '*':
+        }
+        case '*':{
             float iloczyn = pierwsza_liczba * druga_liczba;
             printf("Wynik: %.2f", iloczyn);
             break;
-        case '/':
+        }
+        case '/':{
             float iloraz = pierwsza_liczba / druga_liczba;
             if (pierwsza_liczba == 0 || druga_liczba == 0) {
                 printf("Nie mozna dzielic przez zero");
@@ -423,6 +437,7 @@ int zadanie11(void) {
             }
             printf("Wynik: %.2f", iloraz);
             break;
+        }
         default:
             printf("Podano niepoprawna operacje");
             break;
@@ -518,7 +533,7 @@ int zadanie13(void) {
         return 1;
     }
     switch (wybor) {
-        case 1:
+        case 1:{
             if (a != b) {
                 printf("Podano niepoprawne dane");
                 return 1;
@@ -526,10 +541,12 @@ int zadanie13(void) {
             float pole_kwadratu = a * b;
             printf("Pole: %.2f", pole_kwadratu);
             break;
-        case 2:
+        }
+        case 2:{
             float pole_prostokata = a * b;
             printf("Pole: %.2f", pole_prostokata);
             break;
+        }
         /*case 3:
             float pole_trojkata =;
             printf("Pole: %.2f", pole_trojkata);
@@ -627,7 +644,8 @@ wygrales
 Wskazowka: srand((unsigned)time(NULL)); rand() % 101.
 */
 int zadanie16(void) {
-    srand((unsigned)time(NULL));
+
+    srand((unsigned)time(NULL)); // inicjalizacja 
     int losowa_liczba = rand() % 101;
     int ilosc_prob = 0;
     while (ilosc_prob <= 10) {
@@ -788,43 +806,52 @@ int zadanie20(void) {
         printf("3 - wyplata\n");
         printf("0 - zakoncz\n");
         printf("Wybor: ");
+        
         int wybor;
         if (scanf("%d", &wybor) != 1) {
             printf("Podano niepoprawne dane");
             return 1;
         }
-        int kwota;
+        float kwota;
         switch (wybor) {
             case 1:
                 printf("Saldo: %.2f", saldo);
                 printf("\n");
-                continue;
-            /*case 2:
+                break;
+            case 2:
                 printf("Podaj kwote: ");
+                if(scanf("%f", &kwota) !=1){
+                    printf("Podano niepoprawne dane");
+                    return 1; // exit(1);
+                }
                 if (kwota >= saldo) {
                     printf("Blad operacji");
                     return 1;
                 }
                 saldo = saldo + kwota;
-                printf("Saldo: %.2f", saldo);
-                printf("\n");
+                printf("Saldo: %.2f \n", saldo);
                 break;
             case 3:
                 printf("Podaj kwote: ");
+                if(scanf("%f", &kwota) !=1){
+                    printf("Podano niepoprawne dane");
+                    return 1;
+                }
                 if (kwota >= saldo) {
                     printf("Blad operacji");
+                }
                     saldo = saldo - kwota;
                     printf("Saldo: %.2f", saldo);
                     printf("\n");
-                    continue;
-                }*/ // Te dwa warunki mi nie dzialaja
+                break;
             case 0:
                 printf("Do widzenia!");
                 return 0;
             default:
                 printf("Podano bledny numer operacji");
                 printf("\n");
-    }
+                break;
+        }
     }
 }
 
@@ -859,6 +886,6 @@ int main(void) {
     // zadanie17();
     // zadanie18();
     // zadanie19();
-    // zadanie20();
+     zadanie20();
     return 0;
 }
