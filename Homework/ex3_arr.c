@@ -26,7 +26,10 @@ Wymagania: petla for, indeksowanie.
 Przyklad: 4 8 15 16 23 42
 */
 void zadanie1(void) {
-    // TODO
+    int tablica[6] = {4, 8, 15, 16, 23, 42};
+    for (int i = 1 ; i <= 6 ; i++) {
+        printf("%d ", tablica[i]);
+    }
 }
 
 /*
@@ -36,7 +39,10 @@ Wypisz elementy o indeksach parzystych (0, 2, 4, 6).
 Przyklad: 3 9 15 21
 */
 void zadanie2(void) {
-    // TODO
+    int tablica[8] = {3, 6, 9, 12, 15, 18, 21, 24};
+    for (int i = 0 ; i < 8 ; i+=2) {
+        printf("%d ", tablica[i]);
+    }
 }
 
 /*
@@ -47,7 +53,18 @@ Przyklad wejscia: 5 2 9 1 7 3 8 4
 Przyklad wyjscia: 5 2 9 1 7 3 8 4
 */
 void zadanie3(void) {
-    // TODO
+    int tablica[8] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 8 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    printf("Podane liczby to: ");
+    for (int i = 0 ; i < 8 ; i++) {
+        printf("%d ", tablica[i]);
+    }
 }
 
 /*
@@ -58,7 +75,18 @@ Przyklad wejscia: 1 2 3 4 5 6 7 8 9 10
 Przyklad wyjscia: 10 9 8 7 6 5 4 3 2 1
 */
 void zadanie4(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    printf("Podane liczby to: ");
+    for (int i = 9 ; i >= 0 ; i--) {
+        printf("%d ", tablica[i]);
+    }
 }
 
 /*
@@ -69,7 +97,20 @@ Przyklad wejscia: 1 2 3 4 5 6 7 8 9 10
 Przyklad: Suma: 55, Srednia: 5.50
 */
 void zadanie5(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1){
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int suma = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        suma = suma + tablica[i];
+    }
+    float srednia = (float)suma / 10;
+    printf("Suma: %d, Srednia: %.2f", suma, srednia);
 }
 
 /*
@@ -80,7 +121,29 @@ Przyklad wejscia: -2 0 4 5 -1 0 7 -8 0 3 1 -6
 Przyklad: Dodatnie: 5, Ujemne: 4, Zera: 3
 */
 void zadanie6(void) {
-    // TODO
+    int tablica[12] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 12 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int dodatnia = 0;
+    int ujemna = 0;
+    int zero = 0;
+    for (int i = 0 ; i < 12 ; i++) {
+        if (tablica[i] > 0) {
+            dodatnia++;
+        }
+        else if (tablica[i] < 0) {
+            ujemna++;
+        }
+        else {
+            zero++;
+        }
+    }
+    printf("Dodatnie: %d, Ujemne: %d, Zera: %d", dodatnia, ujemna, zero);
 }
 
 /*
@@ -92,7 +155,29 @@ Przyklad wejscia: -7 -2 -15 -1 -9 -4 -8 -3 -11 -6
 Przyklad: Min: -15, Max: -1
 */
 void zadanie7(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+        if (tablica[i] >= 0) {
+            printf("Podane liczby musza byc ujemne");
+            return;
+        }
+    }
+    int min = tablica[0];
+    int max = tablica[0];
+    for (int i = 0 ; i < 10 ; i++) {
+        if (tablica[i] < min) {
+            min = tablica[i];
+        }
+        if (tablica[i] > max) {
+            max = tablica[i];
+        }
+    }
+    printf("Min: %d, Max: %d", min, max);
 }
 
 /*
@@ -103,7 +188,29 @@ Przyklad wejscia: 5 2 9 2 7 9 1 1 4 6
 Przyklad: Min: 1 indeks: 6; Max: 9 indeks: 2
 */
 void zadanie8(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int min = tablica[0];
+    int max = tablica[0];
+    int indeks_min = 0;
+    int indeks_max = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        if (tablica[i] < min) {
+            min = tablica[i];
+            indeks_min = i;
+        }
+        if (tablica[i] > max) {
+            max = tablica[i];
+            indeks_max = i;
+        }
+    }
+    printf("Min: %d indeks: %d; Max: %d indeks: %d", min, indeks_min, max, indeks_max);
 }
 
 /*
@@ -114,7 +221,22 @@ Przyklad wejscia: 3 5 6 8 9 10 0 12 14 15
 Przyklad: 3 6 9 0 12 15; Liczba: 6
 */
 void zadanie9(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int liczba = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        if (tablica[i] % 3 == 0) {
+            printf("%d ", tablica[i]);
+            liczba++;
+        }
+    }
+    printf("; Liczba: %d", liczba); //Nie wiem jak postawic znak - ';' aby byl bezposrednio za ostatnim wyrazem tablicy
 }
 
 /*
@@ -125,7 +247,21 @@ Przyklad wejscia: 1 2 3 4 5 6 7 8
 Przyklad wyjscia: 8 2 3 4 5 6 7 1
 */
 void zadanie10(void) {
-    // TODO
+    int tablica[8] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 8 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int pierwszy_indeks = tablica[0];
+    int ostatni_indeks = tablica[7];
+    tablica[0] = ostatni_indeks;
+    tablica[7] = pierwszy_indeks;
+    for (int i = 0 ; i < 8 ; i++) {
+        printf("%d ", tablica[i]);
+    }
 }
 
 /*
@@ -136,7 +272,25 @@ Przyklad wejscia: 1 2 3 4 5 6 7 8 9 10
 Srednia: 5.50; Elementy: 6 7 8 9 10
 */
 void zadanie11(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int suma = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        suma = suma + tablica[i];
+    }
+    float srednia = (float)suma / 10;
+    printf("Srednia: %.2f; Elementy: ", srednia);
+    for (int i = 0 ; i < 10 ; i++) {
+        if (tablica[i] > srednia) {
+            printf("%d ", tablica[i]);
+        }
+    }
 }
 
 /*
@@ -148,7 +302,33 @@ Przyklad: tablica 2 5 2 7 2 9 1 4 2 8; x = 2
 Wynik: Liczba wystapien: 4; Pierwszy indeks: 0
 */
 void zadanie12(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    printf("Podaj x: ");
+    int x;
+    if (scanf("%d", &x) !=1) {
+        printf("Incorrect input");
+        return;
+    }
+    int liczba_wystapien = 0;
+    int indeks = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        if (x == tablica[i]) {
+            liczba_wystapien++;
+            if (liczba_wystapien == 1){
+                indeks = i;
+            }
+        }else {
+            indeks = -1;
+        }
+    }
+    printf("Liczba wystapien: %d; Pierwszy indeks: %d", liczba_wystapien, indeks);
 }
 
 /*
@@ -160,7 +340,26 @@ Przyklad: a = 1 -2 3 -4 5 0 2 -1
          b = 1 4 9 16 25 0 4 1
 */
 void zadanie13(void) {
-    // TODO
+    int tablica_a[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 8 ; i++) {
+        if (scanf("%d", &tablica_a[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int tablica_b[10] = {};
+    for (int i = 0 ; i < 8 ; i++) {
+        tablica_b[i] = tablica_a[i] * tablica_a[i];
+    }
+    printf("a = ");
+    for (int i = 0 ; i < 8 ; i++) {
+        printf("%d ", tablica_a[i]);
+    }
+    printf("\nb = ");
+    for (int i = 0 ; i < 8 ; i++) {
+        printf("%d ", tablica_b[i]);
+    }
 }
 
 /*
@@ -172,7 +371,30 @@ Przyklad: 1 2 3 4 5 6 7 8 9 10 -> YES
 Przyklad: 1 2 2 4 5 6 7 8 9 10 -> NO
 */
 void zadanie14(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int czy_rosnacy = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        printf("%d ", tablica[i]);
+        if (tablica[i] > tablica[i + 1]) {
+            czy_rosnacy = 1;
+        }
+        else {
+            czy_rosnacy = 0;
+        }
+    }
+    if (czy_rosnacy == 1) {
+        printf("-> YES");
+    }
+    else {
+        printf("-> NO");
+    }
 }
 
 /*
@@ -184,8 +406,23 @@ Przyklad: 3 5 7 1 2 3 4 0 8 9
 Wynik: 4 (fragment 1 2 3 4)
 */
 void zadanie15(void) {
-    // TODO
-}
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int wynik = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        int roznica = tablica[i + 1]- tablica[i];
+        if (tablica[i + 1] > tablica[i] && roznica == 1) {
+                wynik++;
+        }
+    }
+    printf("Wynik: %d", wynik);
+} //Nie dziala
 
 /*
 ZADANIE 16 - ODWROCENIE TABLICY W MIEJSCU
@@ -195,8 +432,19 @@ Nie tworz drugiej tablicy.
 Przyklad: 1 2 3 4 5 6 7 8 9 10 -> 10 9 8 7 6 5 4 3 2 1
 */
 void zadanie16(void) {
-    // TODO
-}
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+     if (scanf("%d", &tablica[i]) != 1){
+            printf("Incorrect input");
+            return;
+    }
+    }
+    for (int i = 0 ; i < 10 ; i++) {
+        tablica[i] = tablica[9 - i];
+        printf("%d ", tablica[i]);
+    }
+} //Nie dziala
 
 /*
 ZADANIE 17 - USUWANIE POWTORZEN PRZY WYPISYWANIU
@@ -206,7 +454,25 @@ Nie uzywaj sortowania. Mozesz uzyc petli zagniezdzonych.
 Przyklad: 4 2 4 7 2 9 7 1 1 5 -> 4 2 7 9 1 5
 */
 void zadanie17(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    int powtarza_sie = 0;
+    for (int i = 0 ; i < 10 ; i++) {
+        for (int j = 0 ; j < 10 ; j++) {
+            if (tablica[i] == tablica[j]) {
+                powtarza_sie++;
+            }
+            if (powtarza_sie == 1) {
+                printf("%d ", tablica[i]);
+            }
+        }
+    } //Nie dziala
 }
 
 /*
