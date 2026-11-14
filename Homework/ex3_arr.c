@@ -26,8 +26,9 @@ Wymagania: petla for, indeksowanie.
 Przyklad: 4 8 15 16 23 42
 */
 void zadanie1(void) {
-    int tablica[6] = {4, 8, 15, 16, 23, 42};
-    for (int i = 1 ; i <= 6 ; i++) {
+    int tablica[] = {4, 8, 15, 16, 23, 42};
+    int rozmiar = sizeof(tablica) / sizeof(tablica[0]);
+    for (int i = 0 ; i < rozmiar ; i++) {
         printf("%d ", tablica[i]);
     }
 }
@@ -40,7 +41,8 @@ Przyklad: 3 9 15 21
 */
 void zadanie2(void) {
     int tablica[8] = {3, 6, 9, 12, 15, 18, 21, 24};
-    for (int i = 0 ; i < 8 ; i+=2) {
+    int rozmiar = sizeof(tablica) / sizeof(tablica[0]);
+    for (int i = 0 ; i < rozmiar ; i+=2) {
         printf("%d ", tablica[i]);
     }
 }
@@ -382,11 +384,13 @@ void zadanie14(void) {
     int czy_rosnacy = 0;
     for (int i = 0 ; i < 10 ; i++) {
         printf("%d ", tablica[i]);
-        if (tablica[i] > tablica[i + 1]) {
-            czy_rosnacy = 1;
-        }
-        else {
-            czy_rosnacy = 0;
+        for (int j = 0 ; j < 10 ; j++) {
+            if (tablica[i] > tablica[j + 1]) {
+                czy_rosnacy = 1;
+            }
+            else {
+                czy_rosnacy = 0;
+            }
         }
     }
     if (czy_rosnacy == 1) {
@@ -395,7 +399,7 @@ void zadanie14(void) {
     else {
         printf("-> NO");
     }
-}
+} //NIE DZIALA
 
 /*
 ZADANIE 15 - NAJDLUZSZY CIAG ROSNACY
@@ -406,23 +410,8 @@ Przyklad: 3 5 7 1 2 3 4 0 8 9
 Wynik: 4 (fragment 1 2 3 4)
 */
 void zadanie15(void) {
-    int tablica[10] = {};
-    printf("Podaj liczby: ");
-    for (int i = 0 ; i < 10 ; i++) {
-        if (scanf("%d", &tablica[i]) != 1) {
-            printf("Incorrect input");
-            return;
-        }
-    }
-    int wynik = 0;
-    for (int i = 0 ; i < 10 ; i++) {
-        int roznica = tablica[i + 1]- tablica[i];
-        if (tablica[i + 1] > tablica[i] && roznica == 1) {
-                wynik++;
-        }
-    }
-    printf("Wynik: %d", wynik);
-} //Nie dziala
+    // TODO
+}
 
 /*
 ZADANIE 16 - ODWROCENIE TABLICY W MIEJSCU
@@ -435,16 +424,20 @@ void zadanie16(void) {
     int tablica[10] = {};
     printf("Podaj liczby: ");
     for (int i = 0 ; i < 10 ; i++) {
-     if (scanf("%d", &tablica[i]) != 1){
+        if (scanf("%d", &tablica[i]) != 1) {
             printf("Incorrect input");
             return;
+        }
     }
+    for (int i = 0 ; i < 5 ; i++) { //internet pomogl mi z warunkiem (i < 5) oraz z tym aby utworzyc zmienna tymczasowa i skleic dwa elementy tablicy (lewy i prawy) w jednosc
+        int tymczasowa = tablica[i];
+        tablica[i] = tablica[9 - i];
+        tablica[9 - i] = tymczasowa;
     }
     for (int i = 0 ; i < 10 ; i++) {
-        tablica[i] = tablica[9 - i];
         printf("%d ", tablica[i]);
     }
-} //Nie dziala
+}
 
 /*
 ZADANIE 17 - USUWANIE POWTORZEN PRZY WYPISYWANIU
@@ -462,17 +455,17 @@ void zadanie17(void) {
             return;
         }
     }
-    int powtarza_sie = 0;
     for (int i = 0 ; i < 10 ; i++) {
-        for (int j = 0 ; j < 10 ; j++) {
+        int ile_wystepuje = 0;
+        for (int j = 0 ; j < i ; j++) { //Musialem podejrzec warunek (j < i) w internecie. Mialem wczesniej (j < 10) przez co nic nie wypisywalo
             if (tablica[i] == tablica[j]) {
-                powtarza_sie++;
-            }
-            if (powtarza_sie == 1) {
-                printf("%d ", tablica[i]);
+                ile_wystepuje = 1;
             }
         }
-    } //Nie dziala
+        if (ile_wystepuje == 0) {
+            printf("%d ", tablica[i]);
+        }
+    }
 }
 
 /*
@@ -483,7 +476,30 @@ Jesli takich liczb nie ma, wypisz "Brak".
 Przyklad: 4 2 4 7 2 9 7 1 3 5 -> 9 1 3 5
 */
 void zadanie18(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    for (int i = 0 ; i < 10 ; i++) {
+        int ile_wystepuje = 0;
+        for (int j = 0 ; j < 10 ; j++) {
+            if (tablica[i] == tablica[j]) {
+                ile_wystepuje++;
+            }
+        }
+        if (ile_wystepuje == 1){
+            printf("%d ", tablica[i]);
+        }
+        else if (ile_wystepuje != 1) {
+            printf("Brak");
+            break;
+        }
+    }
+
 }
 
 /*
@@ -508,7 +524,30 @@ Przyklad: tab = 1 4 2 3 5 0 6 2 4 1; x = 5
 Przykladowe pary: (0,1), (0,8), (1,9), (2,3), (3,7), (4,5), (8,9)
 */
 void zadanie20(void) {
-    // TODO
+    int tablica[10] = {};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++) {
+        if (scanf("%d", &tablica[i]) != 1) {
+            printf("Incorrect input");
+            return;
+        }
+    }
+    printf("Podaj x: ");
+    int x;
+    if (scanf("%d", &x) != 1) {
+        printf("Incorrect input");
+        return;
+    }
+    for (int i = 0 ; i < 10 ; i++) {
+        for (int j = 0 ; j < 10 ; j++) {
+            int suma = tablica[i] + tablica[j];
+            if (suma == x) {
+                if (i < j) {
+                    printf("(%d,%d), ", i, j); //Mialem problem z brakiem wyswietlenia (0,8). Okazalo sie ze bledem byl zle umieszczony warunek (i < j) - poza warunkiem (suma == x)
+                }
+            }
+        }
+    }
 }
 
 int main(void) {
