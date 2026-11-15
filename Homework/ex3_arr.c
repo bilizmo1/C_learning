@@ -1,4 +1,4 @@
-#include <stdio.h>
+i#include <stdio.h>
 
 /*
 =========================================================
@@ -381,18 +381,15 @@ void zadanie14(void) {
             return;
         }
     }
-    int czy_rosnacy = 0;
-    for (int i = 0 ; i < 10 ; i++) {
-        printf("%d ", tablica[i]);
-        for (int j = 0 ; j < 10 ; j++) {
-            if (tablica[i] > tablica[j + 1]) {
-                czy_rosnacy = 1;
-            }
-            else {
-                czy_rosnacy = 0;
-            }
+    int czy_rosnacy = 1;
+    // 1 2 3 4 3 5
+    for (int i = 1 ; i < 10 ; i++) {
+        if (tablica[i] <= tablica[i - 1]) {
+            czy_rosnacy = 0;
+            break;
         }
     }
+    
     if (czy_rosnacy == 1) {
         printf("-> YES");
     }
@@ -410,7 +407,30 @@ Przyklad: 3 5 7 1 2 3 4 0 8 9
 Wynik: 4 (fragment 1 2 3 4)
 */
 void zadanie15(void) {
-    // TODO
+   int tablica[10] = {};
+   printf("Podaj liczby: ");
+    for (int i = 0 ; i < 10 ; i++){
+        if(scanf("%d", &tablica[i]) != 1){
+            printf("Incorrect input");
+            return;
+        }
+    }
+    // zmienne pomocnicze 
+    int najdluzszy_framgent = 1;
+    int dlugosc = 1;
+    for(int i = 1 ; i < 10 ; i++){
+
+        if(tablica[i] > tablica[i - 1]){
+            dlugosc++;
+        }
+        else{
+            dlugosc = 1;
+        }
+        if(dlugosc > najdluzszy_framgent){
+            najdluzszy_framgent = dlugosc;
+        }
+    }
+    printf("Wynik: %d", najdluzszy_framgent);
 }
 
 /*
@@ -468,6 +488,7 @@ void zadanie17(void) {
     }
 }
 
+
 /*
 ZADANIE 18 - LICZBY WYSTEPUJACE TYLKO RAZ
 Wczytaj 10 liczb. Wypisz tylko te wartosci, ktore wystepuja
@@ -501,6 +522,10 @@ void zadanie18(void) {
     }
 
 }
+
+
+
+
 
 /*
 ZADANIE 19 - DRUGA NAJWIEKSZA ROZNA WARTOSC
@@ -572,5 +597,9 @@ int main(void) {
     // zadanie18();
     // zadanie19();
     // zadanie20();
+
+    
+    
+
     return 0;
 }
