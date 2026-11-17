@@ -29,7 +29,35 @@
  */
 int zadanie_01(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+
+    int macierz[3][4] = {0};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 4 ; j++) {
+            if (scanf("%d", &macierz[i][j]) != 1) {
+                printf("Incorrect input");
+                return 1;
+            }
+        }
+    }
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 4 ; j++) {
+            printf("%4d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    int suma_wszystkich_elementow = 0;
+    int ilosc_liczb_ujemnych = 0;
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 4 ; j++) {
+            suma_wszystkich_elementow = suma_wszystkich_elementow + macierz[i][j];
+            if (macierz[i][j] < 0) {
+                ilosc_liczb_ujemnych++;
+            }
+        }
+    }
+    printf("Suma = %d, Ujemne = %d\n", suma_wszystkich_elementow, ilosc_liczb_ujemnych);
+
     puts("Zadanie 01: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -54,7 +82,37 @@ int zadanie_01(void)
  */
 int zadanie_02(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int macierz[4][5] = {0};
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            int losowa_liczba = 10 + rand() % (99 - 10 + 1);
+            macierz[i][j] = losowa_liczba;
+            }
+        }
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            printf("%4d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    int liczba_zmienionych_pol = 0;
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            if (macierz[i][j] % 3 == 0 || macierz[i][j] % 7 == 0) {
+                macierz[i][j] = 0;
+                liczba_zmienionych_pol++;
+            }
+        }
+    }
+    printf("\n");
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            printf("%4d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("Zamieniono %d pol/pola\n", liczba_zmienionych_pol);
+
     puts("Zadanie 02: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -80,10 +138,26 @@ int zadanie_02(void)
  */
 int zadanie_03(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int tablica[15] = {0};
+    for (int i = 0 ; i < 15 ; i++) {
+        tablica[i] = 1 + rand() % (30 - 1 + 1);;
+    }
+    int liczba_prob = 0;
+    for (int i = 0 ; i < 15 ; i++) {
+        for (int j = 0 ; j < 15 ; j++) {
+            if (tablica[i] == tablica[j]) {
+                tablica[i] = 1 + rand() % (30 - 1 + 1);;
+            }
+            else {
+                printf("%d, ", tablica[i]);
+            }
+            liczba_prob++;
+        }
+    }
+
     puts("Zadanie 03: uzupelnij rozwiazanie.");
     return 0;
-}
+} //ZLE
 
 /*
  * ========================================================================
@@ -108,10 +182,43 @@ int zadanie_03(void)
  */
 int zadanie_04(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int macierz[5][5] = {8, 3, 12, 6};
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            macierz[i][j] = 1 + rand() % (40 - 1 + 1);
+        }
+    }
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            printf("%3d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    int minimum = macierz[0][0];
+    int indeks_i_minimum = 0;
+    int indeks_j_minimum = 0;
+    int maksimum = macierz[0][0];
+    int indeks_i_maksimum = 0;
+    int indeks_j_maksimum = 0;
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            if (macierz[i][j] < minimum) {
+                minimum = macierz[i][j];
+                indeks_i_minimum = i;
+                indeks_j_minimum = j;
+            }
+            if (macierz[i][j] > maksimum) {
+                maksimum = macierz[i][j];
+                indeks_i_maksimum = i;
+                indeks_j_maksimum = j;
+            }
+        }
+    }
+    printf("Minimum leży w (%d, %d), Maksimum leży w (%d, %d)\n", indeks_i_minimum, indeks_j_minimum, indeks_i_maksimum, indeks_j_maksimum);
+
     puts("Zadanie 04: uzupelnij rozwiazanie.");
     return 0;
-}
+} //Brak podpunktu - liczby nie moga sie powtarzac
 
 /*
  * ========================================================================
@@ -133,7 +240,40 @@ int zadanie_04(void)
  */
 int zadanie_05(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int macierz[3][5] = {0};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            if (scanf("%d", &macierz[i][j]) != 1) {
+                printf("Incorrect input");
+                return 1;
+            }
+        }
+    }
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            printf("%d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            int pierwsz_wiersz = macierz[i][0];
+            int drugi_wierwsz = macierz[i][1];
+            macierz[i][0] = macierz[i][4];
+            macierz[i][4] = pierwsz_wiersz;
+            macierz[i][1] = macierz[i][3];
+            macierz[i][3] = drugi_wierwsz;
+        }
+    }
+    printf("\n");
+    for (int i = 0 ; i < 3 ; i++){
+            for (int j = 0 ; j < 5 ; j++) {
+                printf("%d ", macierz[i][j]);
+            }
+        printf("\n");
+        }
+
     puts("Zadanie 05: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -158,7 +298,28 @@ int zadanie_05(void)
  */
 int zadanie_06(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int macierz[5][3] = {0};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+            if (scanf("%d", &macierz[i][j]) != 1) {
+                printf("Incorrect input");
+                return 1;
+            }
+        }
+    }
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+            printf("%d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for (int i = 0 ; i < 5 ; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+
+        }
+    }
     puts("Zadanie 06: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -182,7 +343,22 @@ int zadanie_06(void)
  */
 int zadanie_07(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int macierz[4][4] = {0};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 4 ; j++) {
+            if (scanf("%d", macierz[i][j]) != 1) {
+                printf("Incorrect input");
+                return 1;
+            }
+        }
+    }
+    int suma_wiersza = 0;
+    for (int i = 0 ; i < 4 ; i++) {
+        for (int j = 0 ; j < 4 ; j++) {
+            int suma_wiersza = suma_wiersza + macierz[i][j];
+        }
+    }
     puts("Zadanie 07: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -601,12 +777,12 @@ int main(void)
     srand((unsigned int)time(NULL));
 
     /* Odkomentuj dokładnie jeden wiersz poniżej. */
-    /* return zadanie_01(); */
-    /* return zadanie_02(); */
-    /* return zadanie_03(); */
-    /* return zadanie_04(); */
-    /* return zadanie_05(); */
-    /* return zadanie_06(); */
+    // return zadanie_01();
+    // return zadanie_02();
+    // return zadanie_03();
+    // return zadanie_04();
+    // return zadanie_05();
+     return zadanie_06();
     /* return zadanie_07(); */
     /* return zadanie_08(); */
     /* return zadanie_09(); */
