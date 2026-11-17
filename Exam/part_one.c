@@ -139,20 +139,28 @@ int zadanie_02(void)
 int zadanie_03(void)
 {
     int tablica[15] = {0};
-    for (int i = 0 ; i < 15 ; i++) {
-        tablica[i] = 1 + rand() % (30 - 1 + 1);;
-    }
+
+    int count = 0; // liczba zapisnaych elementow w tablicy 
     int liczba_prob = 0;
-    for (int i = 0 ; i < 15 ; i++) {
-        for (int j = 0 ; j < 15 ; j++) {
-            if (tablica[i] == tablica[j]) {
-                tablica[i] = 1 + rand() % (30 - 1 + 1);;
-            }
-            else {
-                printf("%d, ", tablica[i]);
-            }
-            liczba_prob++;
+
+    while(count < 15)
+    {
+        int kandydat = 1 + rand() % (30 - 1 + 1);
+        liczba_prob++;
+
+        int jest_duplikat = 0;
+        for (int i = 0 ; i < count ; i++) {
+            if (tablica[i] == kandydat) {
+                jest_duplikat = 1;
+                break;
+            }    
         }
+
+        if(jest_duplikat == 0){
+            tablica[count] = kandydat;
+            count++; 
+        }
+
     }
 
     puts("Zadanie 03: uzupelnij rozwiazanie.");
@@ -277,7 +285,47 @@ int zadanie_05(void)
     puts("Zadanie 05: uzupelnij rozwiazanie.");
     return 0;
 }
+// Drugi sposob
+int zadanie_051(void)
+{
+    int macierz[3][5] = {0};
+    printf("Podaj liczby: ");
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            if (scanf("%d", &macierz[i][j]) != 1) {
+                printf("Incorrect input");
+                return 1;
+            }
+        }
+    }
 
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 5 ; j++) {
+            printf("%d ", macierz[i][j]);
+        }
+        printf("\n");
+    }
+
+    for(int i = 0 ; i < 3 ; i++){
+        for(int j = 0; j < 5/2 ; j ++)
+        {
+           int temp = macierz[i][j];
+           macierz[i][j] = macierz[i][5 - j - 1];
+           macierz[i][5 - j - 1] = temp;
+        }
+    }
+    
+    printf("\n");
+    for (int i = 0 ; i < 3 ; i++){
+            for (int j = 0 ; j < 5 ; j++) {
+                printf("%d ", macierz[i][j]);
+            }
+        printf("\n");
+        }
+
+    puts("Zadanie 05: uzupelnij rozwiazanie.");
+    return 0;
+}
 /*
  * ========================================================================
  * A. Macierze i losowanie
@@ -315,14 +363,23 @@ int zadanie_06(void)
         printf("\n");
     }
     printf("\n");
+    for (int i = 0 ; i < 5 / 2; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+            int tymczasowa = macierz[i][j];
+            macierz[i][j] = macierz[5 - i - 1][j];
+            macierz[5 - i - 1][j] = tymczasowa;
+        }
+    }
     for (int i = 0 ; i < 5 ; i++) {
         for (int j = 0 ; j < 3 ; j++) {
-
+            printf("%d ", macierz[i][j]);
         }
+        printf("\n");
     }
     puts("Zadanie 06: uzupelnij rozwiazanie.");
     return 0;
 }
+
 
 /*
  * ========================================================================
@@ -353,11 +410,28 @@ int zadanie_07(void)
             }
         }
     }
-    int suma_wiersza = 0;
+    int suma_wiersza[4] = {0};
     for (int i = 0 ; i < 4 ; i++) {
         for (int j = 0 ; j < 4 ; j++) {
-            int suma_wiersza = suma_wiersza + macierz[i][j];
+           suma_wiersza[i] += macierz[i][j];
         }
+    }
+
+    int main_diag_suma = 0; 
+    int ant_main_diag_suma = 0;
+
+    for(int i = 0 ; i < 4 ; i++){
+        main_diag_suma+= macierz[i][i];
+        ant_main_diag_suma+= macierz[i][4 - i - 1];
+    }
+    int indeks_max_row = 0;
+    int max_row = suma_wiersza[0];
+    for(int i = 1 ; i < 4 ; i++){
+        if(suma_wiersza[i] > max_row){
+            max_row = suma_wiersza[i];
+            indeks_max_row = i;
+        }
+        
     }
     puts("Zadanie 07: uzupelnij rozwiazanie.");
     return 0;
@@ -591,7 +665,28 @@ int zadanie_14(void)
  */
 int zadanie_15(void)
 {
-    /* TODO: tutaj wpisz swoje rozwiązanie. */
+    int ceny[3] = {12, 25, 40};
+    int stan[3] = {10, 8, 5 };
+    int poczatkowe_saldo = 200;
+    printf("Podaj numer produktu i jego ilosc: ");
+    int indeks = 0;
+    int ilosc = 0;
+    if(scanf("%d %d", &indeks, &ilosc) != 1){
+        printf("Blad odczytu liczb");
+        return 1;
+    }
+    if(indeks > 3 || ilosc > 100){
+        printf("Operacja niedozwolona");
+    }
+    int saldo = 0;
+    saldo = poczatkowe_saldo - (indeks * ilosc);
+    if(saldo > poczatkowe_saldo){
+        printf("Operacja niedozwolona");
+    } 
+    if(ilosc > stan[indeks]){
+        printf("Operacja niedozwolona");
+    }
+    printf("Saldo = %d, Stany: %d %d %d", saldo, stan[0], stan[1], stan[2]);
     puts("Zadanie 15: uzupelnij rozwiazanie.");
     return 0;
 }
@@ -663,7 +758,6 @@ int zadanie_17(void)
 
 /*
  * ========================================================================
- * D. Próbne kolokwium
  * ZADANIE 18 - Macierz: losowanie, filtr i obrót
  * 25 min | 2 pkt
  *
