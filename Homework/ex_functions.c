@@ -36,10 +36,22 @@ Szescian liczby: -8
 
 */
 
+
+int szescian(int x) {
+    return x * x * x;
+}
+
 void zadanie1(void) {
 
-    // TUTAJ NAPISZ KOD
+    int x = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &x) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
 
+    int szescian_liczby = szescian(x);
+    printf("Szescian liczby: %d", szescian_liczby);
 }
 
 
@@ -68,10 +80,43 @@ Najwieksza liczba: 12
 
 */
 
+
+int maksimum(int a, int b, int c) {
+    int maks = a;
+    if (b > maks) {
+        maks = b;
+    }
+    if (c > maks) {
+        maks = c;
+    }
+    return maks;
+}
+
 void zadanie2(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
 
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int c = 0;
+    printf("Podaj c: ");
+    if (scanf("%d", &c) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int najwieksza_liczba = maksimum(a, b, c);
+    printf("Najwieksza liczba: %d", najwieksza_liczba);
 }
 
 
@@ -109,9 +154,28 @@ Wymagania:
 
 */
 
+
+bool czy_parzysta(int n) {
+    if (n % 2 == 0) {
+        return true;
+    }
+}
+
 void zadanie3(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    if (czy_parzysta(n) == true) {
+        printf("Liczba jest parzysta");
+    }
+    else {
+        printf("Liczba jest nieparzysta");
+    }
 
 }
 
@@ -150,9 +214,32 @@ Wymagania:
 
 */
 
+
+int suma_cyfr(int n) {
+    int suma = 0;
+    while (n > 0){
+        int cyfra = n % 10;
+        suma = suma + cyfra;
+        n = n / 10;
+    }
+    return suma;
+}
+
 void zadanie4(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+    if (n < 0) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int suma_wszystkich_cyfr = suma_cyfr(n);
+    printf("Suma cyfr: %d", suma_wszystkich_cyfr);
 
 }
 
@@ -199,10 +286,34 @@ Sprawdzaj dzielniki tylko do pierwiastka z n.
 
 */
 
+
+bool czy_pierwsza(int n) {
+    int ilosc_dzielnikow = 0;
+    for (int i = 1 ; i <= n ; i++) {
+        if (n % i == 0) {
+            ilosc_dzielnikow++;
+        }
+    }
+    if (ilosc_dzielnikow == 2) {
+        return true;
+    }
+}
+
 void zadanie5(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
 
+    if (czy_pierwsza(n) == true) {
+        printf("Liczba jest pierwsza");
+    }
+    else {
+        printf("Liczba nie jest pierwsza");
+    }
 }
 
 
@@ -247,9 +358,38 @@ z przedziału od 1 do 10000.
 
 */
 
+
+bool czy_doskonala(int n) {
+    int suma = 0;
+    for (int i = 0 ; i <= n / 2 ; i++) {
+        if (n % i == 0) {
+            suma = suma + i;
+        }
+    }
+    if (suma == n) {
+        return true;
+    }
+}
+
 void zadanie6(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+    if (n <= 0) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    if (czy_doskonala(n) == true) {
+        printf("Liczba jest doskonala");
+    }
+    else{
+        printf("Liczba nie jest doskonala");
+    }
 
 }
 
@@ -292,9 +432,28 @@ wynik = wynik * 10 + ostatnia_cyfra;
 
 */
 
+
+int odwroc(int n) {
+    int wynik = 0;
+    while (n > 0) {
+        int cyfra = n % 10;
+        wynik = wynik * 10 + cyfra;
+        n = n / 10;
+    }
+    return wynik;
+}
+
 void zadanie7(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int odwrocona_liczba = odwroc(n);
+    printf("Odwrocona liczba: %d", odwrocona_liczba);
 
 }
 
@@ -336,10 +495,32 @@ Wymagania:
 
 */
 
+
+bool czy_palindrom(int n) {
+    if (n == odwroc(n)) {
+        return true;
+    }
+}
+
 void zadanie8(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+    if (n < 0) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
 
+    if (czy_palindrom(n) == true) {
+        printf("Liczba jest palindromem");
+    }
+    else {
+        printf("Liczba nie jest palindromem");
+    }
 }
 
 
@@ -377,10 +558,43 @@ NWD(24, 12) = 12
 
 */
 
+
+int nwd(int a, int b) {
+    int reszta_z_dzielenia = 0;
+    while (b > 0) {
+        reszta_z_dzielenia = a % b;
+        a = b;
+        b = reszta_z_dzielenia;
+    }
+    return a;
+}
+
 void zadanie9(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+    if (a < 0) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
 
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+    if (b < 0) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int najwiekszy_wspolny_dzielnik = nwd(a, b);
+    printf("NWD: %d", najwiekszy_wspolny_dzielnik);
 }
 
 
@@ -428,10 +642,22 @@ zamiast zmiennej globalnej.
 
 */
 
+
+int licznik = 0;
+
+
+int kwadrat(int x) {
+    return x * x;
+}
+
 void zadanie10(void) {
 
-    // TUTAJ NAPISZ KOD
+    for (int x = 2 ; x <= 6 ; x++) {
+        printf("kwadrat(%d) = %d\n", x, kwadrat(x));
+        licznik++;
+    }
 
+    printf("Liczba wywolan: %d", licznik);
 }
 
 
@@ -469,9 +695,22 @@ Wymagania:
 
 */
 
+
+void zwieksz(int *a) {
+    *a = *a + 10;
+}
+
 void zadanie11(void) {
 
-    // TUTAJ NAPISZ KOD
+    int x = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &x) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    zwieksz(&x);
+    printf("%d", x);
 
 }
 
@@ -511,9 +750,31 @@ Wymagania:
 
 */
 
+
+void swap(int *a, int *b) {
+    int tymczasowa = *a;
+    *a = *b;
+    *b = tymczasowa;
+}
+
 void zadanie12(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    swap(&a, &b);
+    printf("a = %d\nb = %d", a, b);
 
 }
 
@@ -556,16 +817,29 @@ Po wyzeruj:
 a = 0
 
 Pytania:
-1. Dlaczego pierwsza funkcja nie zmienia a?
-2. Dlaczego druga funkcja zmienia a?
-3. Czym różni się x od *x?
+1. Dlaczego pierwsza funkcja nie zmienia a? --> ponieważ tworzy kopię o innym adresie zerująć wartość w kopii
+2. Dlaczego druga funkcja zmienia a? --> ponieważ funkcja dzieje się na adresie zmiennej a (nadpisuje wartość w adresie - w tym wypadku zero)
+3. Czym różni się x od *x? --> x to zmienna lokalna o nowym adresie, natomiast *x to zmienna, którą przechowuje wartość konkretnego adresu
 
 */
 
+
+void wyzeruj_kopie(int x) {
+    x = 0;
+}
+
+void wyzeruj(int *x) {
+    *x = 0;
+}
 void zadanie13(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 50;
 
+    wyzeruj_kopie(a);
+    printf("a = %d\n", a);
+
+    wyzeruj(&a);
+    printf("a = %d", a);
 }
 
 
@@ -607,10 +881,40 @@ min_max(12, 7, &minimum, &maksimum);
 
 */
 
+
+void min_max(int a, int b, int *min, int *max) {
+    if (a < b) {
+        *min = a;
+        *max = b;
+    }
+    else {
+        *min = b;
+        *max = a;
+    }
+}
+
 void zadanie14(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
 
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int minimum = 0;
+    int maksimum = 0;
+
+    min_max(a, b, &minimum, &maksimum);
+    printf("Minimum: %d\n", minimum);
+    printf("Maksimum: %d", maksimum);
 }
 
 
@@ -656,9 +960,39 @@ Wymagania:
 
 */
 
+
+bool dzielenie(int a, int b, int *iloraz, int *reszta) {
+    if (a == 0 || b == 0) {
+        printf("Dzielenie przez zero!");
+        return false;
+    }
+    *iloraz = a / b;
+    *reszta = a % b;
+    return true;
+}
+
 void zadanie15(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int iloraz = 0;
+    int reszta = 0;
+
+    if (dzielenie(a, b, &iloraz, &reszta) == true) {
+        printf("Iloraz: %d\nReszta: %d", iloraz, reszta);
+    }
 
 }
 
@@ -699,10 +1033,43 @@ Nie używaj tablic.
 
 */
 
+void sortuj3(int *a, int *b, int *c) {
+    if (*b < *a) {
+        swap(a, b);
+    }
+    if (*c < *b) {
+        swap(b, c);
+    }
+    if (*b < *a) {
+        swap(a, b);
+    }
+}
+
 void zadanie16(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
 
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int c = 0;
+    printf("Podaj c: ");
+    if (scanf("%d", &c) != 1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    sortuj3(&a, &b, &c);
+    printf("%d %d %d", a, b, c);
 }
 
 
@@ -745,9 +1112,39 @@ Wymagania:
 
 */
 
+
+void analiza_liczby(int n, int *suma, int *liczba_cyfr) {
+    *suma = 0;
+    *liczba_cyfr = 0;
+    do {
+        int cyfra = n % 10;
+        *suma = *suma + cyfra;
+        n = n / 10;
+        *liczba_cyfr = *liczba_cyfr + 1;
+    }
+    while (n > 0);
+}
+
 void zadanie17(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) !=1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+    if (n < 0) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int suma = 0;
+    int liczba_cyfr = 0;
+
+    analiza_liczby(n, &suma, &liczba_cyfr);
+    printf("Suma cyfr: %d\nLiczba cyfr: %d", suma, liczba_cyfr);
+
+
 
 }
 
@@ -975,7 +1372,7 @@ int main(void) {
 
     // zadanie16();
     // zadanie17();
-    // zadanie18();
+     zadanie18();
     // zadanie19();
     // zadanie20();
     // zadanie21();
