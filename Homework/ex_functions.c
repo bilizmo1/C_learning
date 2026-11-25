@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <tgmath.h>
 
 
 /*
@@ -1188,9 +1189,31 @@ wskazują tę samą zmienną.
 
 */
 
+
+void swap_bez_pomocniczej(int *a, int *b) {
+    *a = *a ^ *b;
+    *b = *a ^ *b;
+    *a = *a ^ *b;
+}
+
 void zadanie18(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 0;
+    printf("Podaj a: ");
+    if (scanf("%d", &a) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    int b = 0;
+    printf("Podaj b: ");
+    if (scanf("%d", &b) != 1) {
+        printf("Podano niepoprawne dane!");
+        return;
+    }
+
+    swap_bez_pomocniczej(&a, &b);
+    printf("a = %d\nb = %d", a, b);
 
 }
 
@@ -1247,10 +1270,54 @@ Wymagania:
 
 */
 
+
+int potega(int podstawa, int wykladnik) {
+    int wynik = 1;
+    for (int i = 0 ; i < wykladnik ; i++) {
+        wynik = wynik * podstawa;
+    }
+    return wynik;
+}
+
+bool czy_armstrong(int n) {
+    int pierwsza_tymczasowa = n;
+    int druga_tymczasowa = n;
+    int liczba_cyfr = 0;
+    do {
+        n = n / 10;
+        liczba_cyfr++;
+    }
+    while (n > 0);
+    int suma_poteg = 0;
+    while (pierwsza_tymczasowa > 0) {
+        int cyfra = pierwsza_tymczasowa % 10;
+        suma_poteg = suma_poteg + potega(cyfra, liczba_cyfr);
+        pierwsza_tymczasowa = pierwsza_tymczasowa / 10;
+    }
+    if (druga_tymczasowa == suma_poteg) {
+        return true;
+    }
+}
+
 void zadanie19(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) !=1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+    if (n < 0) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
 
+    if (czy_armstrong(n) == true) {
+        printf("Liczba Armstronga");
+    }
+    else {
+        printf("Liczba nie Armstronga");
+    }
 }
 
 
@@ -1295,9 +1362,52 @@ Wymagania:
 
 */
 
+
+void analizuj(int n, int *suma_cyfr, int *liczba_cyfr, int *najwieksza_cyfra, bool *czy_parzysta) {
+    *suma_cyfr = 0;
+    *liczba_cyfr = 0;
+    *najwieksza_cyfra = 0;
+    if (n % 2 == 0) {
+        *czy_parzysta = true;
+    }
+    do {
+        int cyfra = n % 10;
+        *suma_cyfr = *suma_cyfr + cyfra;
+        n = n / 10;
+        if (cyfra > *najwieksza_cyfra) {
+            *najwieksza_cyfra = cyfra;
+        }
+        *liczba_cyfr = *liczba_cyfr + 1;
+    }
+    while (n > 0);
+}
+
 void zadanie20(void) {
 
-    // TUTAJ NAPISZ KOD
+    int n = 0;
+    printf("Podaj liczbe: ");
+    if (scanf("%d", &n) !=1) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+    if (n < 0) {
+        printf("Podano niepoprawna wartosc!");
+        return;
+    }
+
+    int suma_cyfr = 0;
+    int liczba_cyfr = 0;
+    int najwieksza_cyfra = 0;
+    bool czy_parzysta = 0;
+
+    analizuj(n, &suma_cyfr, &liczba_cyfr, &najwieksza_cyfra, &czy_parzysta);
+    printf("Suma cyfr: %d\nLiczba cyfr: %d\nNajwieksza cyfra: %d\nCzy parzysta: ", suma_cyfr, liczba_cyfr, najwieksza_cyfra);
+    if (czy_parzysta == true) {
+        printf("TAK");
+    }
+    else {
+        printf("NIE");
+    }
 
 }
 
@@ -1326,11 +1436,11 @@ int main(){
 
 Pytania:
 
-1. Co wypisze program?
+1. Co wypisze program? --> najpierw wartość końcową funkcji czyli a = 15, później zmiennej a = 5
 2. Ile zmiennych a istnieje podczas
-   wykonywania funkcji?
-3. Czy zmienne mają takie same adresy?
-4. Dlaczego wartość a w main() się nie zmienia?
+   wykonywania funkcji? --> dwie, jedna w funkcji (kopia), druga w mainie (oryginał)
+3. Czy zmienne mają takie same adresy? --> nie, kopia a posiada 0xf natomiat a 0x5
+4. Dlaczego wartość a w main() się nie zmienia? --> ponieważ działamy na kopii
 
 W zadanie21():
 1. Przepisz kod funkcji.
@@ -1339,9 +1449,20 @@ W zadanie21():
 
 */
 
+
+void funkcja(int a){
+    a = a + 10;
+    printf("%d ", a);
+}
+
 void zadanie21(void) {
 
-    // TUTAJ NAPISZ KOD
+    int a = 5;
+
+    funkcja(a);
+
+    printf("%d", a);
+
 
 }
 
@@ -1372,7 +1493,7 @@ int main(void) {
 
     // zadanie16();
     // zadanie17();
-     zadanie18();
+    // zadanie18();
     // zadanie19();
     // zadanie20();
     // zadanie21();
